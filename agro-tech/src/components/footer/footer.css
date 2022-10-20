@@ -1,0 +1,5 @@
+.footer-container {
+    position: relative;
+    bottom: 0;
+    visibility: hidden;
+}

@@ -1,0 +1,28 @@
+.main-container {}
+
+.aboutAndImage {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-container {
+    margin-left: 2%;
+    width: 50%;
+}
+
+.about {
+    border: 1px solid black;
+    border-radius: 20px;
+    margin-right: 5%;
+}
+
+.about-details {
+    padding: 1% 2%;
+}
+
+.about-image-container {
+    width: 50%;
+    height: 50%;
+}
