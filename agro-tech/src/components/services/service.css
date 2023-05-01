@@ -1,0 +1,62 @@
+.service__home {
+    margin-top: 2rem;
+}
+
+@supports (background-color: #333) {
+    body {
+        background-color: #fff;
+    }
+}
+
+.service__title {
+    width: 100vw;
+    background-image: linear-gradient(to right, orange, red);
+    height: 10rem;
+    font-size: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.service__infoOne {
+    display: flex;
+    padding: 2rem;
+    align-items: center;
+    background-color: grey;
+    margin: 10rem 5rem;
+    border-radius: 10px;
+}
+
+.service__img1 {
+    border-radius: 10px;
+    object-fit: contain;
+    width: 100%;
+}
+
+.service__img1:hover {
+    transform: scale(1.05);
+    transition: ease 0.5s;
+}
+
+
+.service__infoText {
+    font-size: 2rem;
+    margin-left: 5rem;
+}
+
+.service__upload {
+    margin: 0 10%;
+    width: 80%;
+    height: 400px;
+    border-radius: 25px;
+    background-image: linear-gradient(to right, #00ff6c, #00aaff);
+    display: flex;
+    flex-direction: column;
+    color: black;
+    margin-bottom: 3rem;
+}
+
+.service__upload:hover {
+    transform: scale(1.05);
+    transition: ease 0.5s;
+}

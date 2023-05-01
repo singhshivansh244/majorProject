@@ -1,27 +1,25 @@
 import './App.css';
-import { useState } from 'react'
-import Main from './components/main/Main'
+import Home from './components/main/Main'
 import Navbar from './components/navbar/Navbar'
 import Footer from './components/footer/Footer'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import About from './components/about/About'
+import Service from './components/services/Service'
+import Login from './components/login/Login'
 
 function App() {
-  const [windowSize, setWindowSize] = useState(window.innerWidth);
-  window.addEventListener('resize', () => setWindowSize(window.innerWidth));
-  // if (windowSize < 1000) {
-  //   return (
-  //     <div>
-  //       <h1>
-  //         Website is Available for desktop view only.(Screen Size: 1400X500)
-  //         {window.innerWidth}
-  //       </h1>
-  //     </div>
-  //   )
-  // }
   return (
     <div>
-      <Navbar />
-      <Main />
-      <Footer />
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route exact path='/' element={<Home />} />
+          <Route path='/about' element={<About />} />
+          <Route path='/service' element={<Service />} />
+          <Route path='http://localhost:4000/login' element={<Login />} />
+        </Routes>
+        <Footer />
+      </Router>
     </div>
   );
 }

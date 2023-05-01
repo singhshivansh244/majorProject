@@ -1,38 +1,57 @@
 import './navbar.css'
-import {useState, useEffect} from 'react'
-import { Agriculture } from '@mui/icons-material'
+import { useState, useEffect } from 'react'
 
 export default function Navbar() {
-    const homePage = '#';
-    const [theme, setTheme] = useState(true);
-    const handleTheme = () => setTheme(prev => !prev)
+    // const [theme, setTheme] = useState(false);
+    // const handleTheme = () => setTheme(prev => !prev);
+    const [show, handleShow] = useState(false);
+    const [username, setUsername] = useState('');
+
+    // removing user from server
+    const handleLogout = () => {
+        fetch('http://localhost:4000/remuser', {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8'
+            }
+        })
+        setUsername('');
+    }
+
     useEffect(() => {
-        document.body.className = theme ? 'light' : 'dark';
-        document.getElementById('navbar').className = theme ? 'nav-light navbar-container' : 'nav-dark navbar-container';
-        document.getElementById('list1').className = theme ? 'nav-light list-item' : 'nav-dark list-item';
-        document.getElementById('list2').className = theme ? 'nav-light list-item' : 'nav-dark list-item';
-        document.getElementById('list3').className = theme ? 'nav-light list-item' : 'nav-dark list-item';
-        document.getElementById('list4').className = theme ? 'nav-light list-item' : 'nav-dark list-item';
-    }, [theme])
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) handleShow(true);
+            else handleShow(false);
+        });
+        async function getUsername() {
+            const getUsername = await fetch('http://localhost:4000/username').then((res) => res.json());
+            if (getUsername !== "") setUsername(getUsername);
+        }
+        getUsername();
+        return () => {
+            window.removeEventListener('scroll', null);
+        };
+    }, [])
+    console.log(username)
+    const login = <li><a className={`navbar__list ${show && 'nav-dark'}`} href='http://localhost:4000/login'>Login</a></li>
+    const signup = <li><a className={`navbar__list ${show && 'nav-dark'}`} href='http://localhost:4000/signup'>SignUp</a></li>
+    const printUser = <li><a className={`navbar__list ${show && 'nav-dark'}`} href='#'>{username}</a></li>
+    const logOut = <li><a className={`navbar__list ${show && 'nav-dark'}`} href='#' onClick={() => handleLogout()}>Log out</a></li>
     return (
-        <nav id='navbar'>
+        <nav id='navbar' className={`navbar-container ${show && 'nav-dark'}`}>
             <div className='logo'>
-                {/* <img src="/images/Logo-SmartAgriculture.ico" alt="logo" className={`logo-image ${!theme} ? 'img-dark' : ''`} /> */}
-                <Agriculture fontSize='large'/>
-            </div>
-            <div className='title'>
+                <img src="/images/Logo.png" alt="logo" className={`logo-image`} />
                 <h1>Agro-Tech</h1>
             </div>
             <div className='menu'>
                 <ul className='menu-list'>
-                    <li><a id='list1' href={homePage}>Home</a></li>
-                    <li><a id='list2' href={homePage}>About</a></li>
-                    <li><a id='list3' href={homePage}>Services</a></li>
-                    <li><a id='list4' href={homePage}>Login/Register</a></li>
-                    <label class="switch">
-                        <input onClick={() => handleTheme()} type="checkbox" />
-                        <span class="slider round"></span>
-                    </label>
+                    <li><a className={`navbar__list ${show && 'nav-dark'}`} href='http://localhost:3000/'>Home</a></li>
+                    <li><a className={`navbar__list ${show && 'nav-dark'}`} href='http://localhost:3000/about'>About</a></li>
+                    <li><a className={`navbar__list ${show && 'nav-dark'}`} href='http://localhost:3000/service'>Services</a></li>
+                    {username === '' && login}
+                    {username === '' && signup}
+                    {username !== '' && printUser}
+                    {username !== '' && logOut}
                 </ul>
             </div>
         </nav>

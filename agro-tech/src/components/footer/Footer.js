@@ -7,6 +7,7 @@ import {
     FooterLink,
     Heading,
 } from "./FooterStyles";
+import './footer.css'
 
 const Footer = () => {
     return (

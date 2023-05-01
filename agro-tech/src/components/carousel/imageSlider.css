@@ -1,7 +1,6 @@
 .slick-slide img {
-    position: relative;
-    
+    object-fit: contain;
     margin: auto;
-    width: 80%;
-    height: 700px;
+    height: 500px;
+    margin-top: 5rem;
 }

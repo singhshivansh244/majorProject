@@ -1,0 +1,36 @@
+.about__about-corousal {
+    margin-bottom: 1.5%;
+}
+
+.about__about-title {
+    display: flex;
+    margin-top: 3rem;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1%;
+    background-color: orange;
+    height: 5rem;
+    border-radius: 20px;
+}
+
+.about__about-pic-container {
+    display: flex;
+    margin: 0 5% 1% 5%;
+    justify-content: space-between;
+    border: 1px solid;
+    border-radius: 20px;
+    flex-wrap: wrap;
+}
+
+.about__about-dp {
+    max-width: 500px;
+    border-radius: 10%;
+}
+
+.about__about-info {
+    font-size: 2rem;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

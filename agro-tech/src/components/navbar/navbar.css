@@ -1,42 +1,42 @@
 .navbar-container {
-    z-index: 9999999;
-    position: sticky;
+    position: fixed;
+    z-index: 1;
     top: 0;
     display: flex;
-    max-width: 100vw;
-    height: auto;
+    width: 100vw;
+    align-self: flex-start;
     justify-content: space-around;
     align-items: center;
-    border-bottom: 1px solid black;
+    z-index: 100;
 }
 
-.nav-light {
-    background-color: #fff;
-    color: #333;
+.navbar__list {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
 }
 
 .nav-dark {
-    background-color: #333;
+    transition: all 0.3s;
+    border-bottom: 1px solid #252628;
+    background-color: #252628;
     color: #fff;
 }
 
 .logo {
-    max-width: 20%;
-    height: auto;
+    width: 80em;
+    display: flex;
+    align-items: center;
 }
 
 .logo-image {
-    max-width: 40%;
-}
-
-.title {
-    font-size: 3rem;
-    max-width: 25%;
+    width: 8em;
 }
 
 .menu {
-    width: 50%;
+    width: 50em;
 }
+
 
 .menu-list {
     font-size: 1.5rem;
@@ -51,22 +51,22 @@
     cursor: pointer;
 }
 
-.switch {
+/* .switch {
     position: relative;
     display: inline-block;
-    width: 60px;
-    height: 34px;
+    width: 60em;
+    height: 34em;
 }
 
 /* Hide default HTML checkbox */
-.switch input {
+/* .switch input {
     opacity: 0;
     width: 0;
     height: 0;
-}
+} */
 
 /* The slider */
-.slider {
+/* .slider {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -76,15 +76,15 @@
     background-color: #ccc;
     -webkit-transition: .4s;
     transition: .4s;
-}
+} */
 
-.slider:before {
+/* .slider:before {
     position: absolute;
     content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
+    height: 26em;
+    width: 26em;
+    left: 4em;
+    bottom: 4em;
     background-color: white;
     -webkit-transition: .4s;
     transition: .4s;
@@ -104,12 +104,10 @@ input:checked+.slider:before {
     transform: translateX(26px);
 }
 
-/* Rounded sliders */
 .slider.round {
     border-radius: 34px;
 }
 
 .slider.round:before {
     border-radius: 50%;
-}
-
+} */
