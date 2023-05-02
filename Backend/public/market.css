@@ -1,0 +1,155 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: grey;
+}
+
+body {
+    background-color: #e5e4e2;
+}
+
+.add {
+    margin: 5px 0 5px 0;
+    padding: 5px 0 5px 0;
+
+}
+
+#myCarousel {
+    height: 150px;
+}
+
+button {
+    background-color: #00A86B;
+    color: white;
+    padding-left: 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 90px;
+
+}
+
+@media screen and (max-width: 426px) {
+    aside {
+        display: none;
+    }
+
+    article {
+        display: none;
+    }
+
+    button {
+        margin-top: 0;
+        margin-left: 0;
+    }
+
+    .main-div {
+        margin-left: 10px;
+    }
+}
+
+@media (min-width: 427px) and (max-width: 769px) {
+    button {
+        margin-left: 0;
+    }
+}
+
+.list-object {
+    margin-bottom: 10px;
+    background-color: white;
+}
+
+li {
+    display: inline-block;
+    direction: horizontal;
+}
+
+.main-div {
+    margin-right: 10px;
+}
+
+.row {
+    margin-bottom: 2em;
+}
+
+.col {
+    margin: 2em 0;
+}
+
+.li {
+    display: grid;
+    grid-template-columns: 2em repeat(3, auto) 2em;
+    gap: 2em;
+    padding: 1.5em;
+}
+
+.card {
+    cursor: pointer;
+    border: 1px solid grey;
+    border-radius: 1em;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    transition: all 1s;
+    background-color: rgb(212, 212, 212);
+}
+
+.card__top {
+    display: flex;
+    align-items: center;
+}
+
+.card-img {
+    width: 60%;
+    border-radius: 1em;
+    object-fit: contain;
+}
+
+.card__info {
+    font-size: 1.8rem;
+}
+
+.container {
+    width: 1em;
+    display: flex;
+    align-items: center;
+}
+
+.prev,
+.next {
+    cursor: pointer;
+    font-size: 3rem;
+}
+
+.prev {
+    color: green;
+}
+
+.next {
+    color: green;
+}
+
+/* Position the "next button" to the right */
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    text-decoration: none;
+}
+
+main div {
+    text-align: left;
+}

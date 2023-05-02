@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title></title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://use.fontawesome.com/26fa493e94.js"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <script src="https://kit.fontawesome.com/cc09763b7f.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Recursive&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@600&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/signup.css">
+  <link rel="stylesheet" href="/signup_home.css">
+  <!--link rel="stylesheet" href="Itcheking.css"-->
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-3 "></div>
+      <div class=" col-md-6 log col-sm-12">
+        <form class="txtb" action="http://localhost:4000/register" method="POST" target="_parent">
+          <h1>SIGNUP</h1>
+          <div class="row" id="social-icons">
+
+            {{!-- <div class="col icons">
+              <a href="#"><img src="https://img.icons8.com/color/96/000000/facebook-circled--v5.png" /></a>
+              <a href="#"><img src="https://img.icons8.com/color/96/000000/google-logo.png" /></a>
+              <a href="#"><img src="https://img.icons8.com/color/96/000000/twitter.png" /></a>
+            </div> --}}
+
+            {{!-- Getting info of user --}}
+
+            <input type="text" placeholder="Name" class="txtb" id="usename" name="username">
+            <input type="email" placeholder="E-mail" class="txtb" id="email" name="email">
+            <input type="text" placeholder="Contact" class="txtb" id="contact" name="contact">
+            <input type="password" placeholder="password" class="txtb" id="password" name="password">
+            <input type="submit" value="Add" id="submitBtn" />
+            <span style="width: 100px;"></span>
+            <br>
+
+          </div>
+          <a href="login">Sign-in</a>
+        </form>
+      </div>
+      <div style="height: 20px;"></div>
+      <div class="col-sm col-md-4"></div>
+    </div>
+  </div>
+  {{>footer}}
+</body>
+<script>
+  console.log('Here it is')
+  document.getElementById("submitBtn").addEventListener("click", myFunction);
+  function myFunction() {
+    console.log('Here it is the bset')
+    window.location.href = "http://localhost:4000/login";
+  }
+</script>
+
+</html>
