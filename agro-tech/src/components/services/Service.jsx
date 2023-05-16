@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
+import Loading from '../loading/Loading'
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import React from "react";
@@ -12,6 +11,7 @@ import image from "./bg1.png";
 import { DropzoneArea } from 'material-ui-dropzone';
 import { common } from '@material-ui/core/colors';
 import Clear from '@material-ui/icons/Clear';
+import './service.css'
 
 
 const REACT_APP_API_URL = 'http://localhost:8000/predict'
@@ -154,23 +154,9 @@ export default function Service() {
   const [data, setData] = useState();
   const [image, setImage] = useState(false);
   const [isLoading, setIsloading] = useState(false);
+  const [serviceSelected, setServiceSeleted] = useState('notSelected');
+  const [irrigationData, setIrrigationData] = useState('')
   let confidence = 0;
-
-  const sendFile = async () => {
-    if (image) {
-      let formData = new FormData();
-      formData.append("file", selectedFile);
-      let res = await axios({
-        method: "post",
-        url: REACT_APP_API_URL,
-        data: formData,
-      });
-      if (res.status === 200) {
-        setData(res.data);
-      }
-      setIsloading(false);
-    }
-  }
 
   const clearData = () => {
     setData(null);
@@ -189,12 +175,29 @@ export default function Service() {
   }, [selectedFile]);
 
   useEffect(() => {
+    const sendFile = async () => {
+      if (image) {
+        let formData = new FormData();
+        formData.append("file", selectedFile);
+        let res = await axios({
+          method: "post",
+          url: REACT_APP_API_URL,
+          data: formData,
+        });
+        if (res.status === 200) {
+          setData(res.data);
+        }
+        setIsloading(false);
+      }
+    }
+
     if (!preview) {
       return;
     }
+
     setIsloading(true);
     sendFile();
-  }, [preview]);
+  }, [preview])
 
   const onSelectFile = (files) => {
     if (!files || files.length === 0) {
@@ -212,73 +215,155 @@ export default function Service() {
     confidence = (parseFloat(data.confidence) * 100).toFixed(2);
   }
 
-  return (
-    <React.Fragment>
-      <Container maxWidth={false} className={classes.mainContainer} disableGutters={true}>
-        <Grid
-          className={classes.gridContainer}
-          container
-          direction="row"
-          justifyContent="center"
-          alignItems="center"
-          spacing={2}
-        >
-          <Grid item xs={12}>
-            <Card className={`${classes.imageCard} ${!image ? classes.imageCardEmpty : ''}`}>
-              {image && <CardActionArea>
-                <CardMedia
-                  className={classes.media}
-                  image={preview}
-                  component="image"
-                  title="Contemplative Reptile"
-                />
-              </CardActionArea>
-              }
-              {!image && <CardContent className={classes.content}>
-                <DropzoneArea
-                  dropzoneClass={classes.dropZone}
-                  acceptedFiles={['image/*']}
-                  dropzoneText={"Drag and drop an image of a plant leaf to process"}
-                  onChange={onSelectFile}
-                />
-              </CardContent>}
-              {data && <CardContent className={classes.detail}>
-                <TableContainer component={Paper} className={classes.tableContainer}>
-                  <Table className={classes.table} size="small" aria-label="simple table">
-                    <TableHead className={classes.tableHead}>
-                      <TableRow className={classes.tableRow}>
-                        <TableCell className={classes.tableCell1}>Label:</TableCell>
-                        <TableCell align="right" className={classes.tableCell1}>Confidence:</TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody className={classes.tableBody}>
-                      <TableRow className={classes.tableRow}>
-                        <TableCell component="th" scope="row" className={classes.tableCell}>
-                          {data.class}
-                        </TableCell>
-                        <TableCell align="right" className={classes.tableCell}>{confidence}%</TableCell>
-                      </TableRow>
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-              </CardContent>}
-              {isLoading && <CardContent className={classes.detail}>
-                <CircularProgress color="secondary" className={classes.loader} />
-                <Typography className={classes.title} variant="h6" noWrap>
-                  Processing
-                </Typography>
-              </CardContent>}
-            </Card>
-          </Grid>
-          {data &&
-            <Grid item className={classes.buttonGrid} >
+  const handleIrrigation = async (e) => {
+    e.preventDefault();
+    setIsloading(true);
+    setIrrigationData('');
+    setTimeout(async () => {
+      const form = document.getElementById('landInfo');
+      const formData = new FormData(form); // Create a new FormData object and pass the form element
+      await fetch('http://127.0.0.1:5000/fuzzy_logic', {
+        method: 'POST',
+        body: formData,
+      })
+        .then(data => data.text()).then(data => {
+          setIrrigationData(data)
+        })
+        .catch(error => {
+          console.error(error);
+        });
+      setIsloading(false)
+    }, Math.floor(Math.random(6000) + 3000));
+  }
 
-              <ColorButton variant="contained" className={classes.clearButton} color="primary" component="span" size="large" onClick={clearData} startIcon={<Clear fontSize="large" />}>
-                Clear
-              </ColorButton>
-            </Grid>}
-        </Grid >
-      </Container >
-    </React.Fragment >
+  return (
+    <div className="services--container">
+      {
+        serviceSelected === 'notSelected' &&
+        <div className="serviceCard--container">
+          <div className="serviceCard">
+            <img className="serviceCard--img" src='/images/background/2.webp' alt="poster" />
+            <h2 style={{ textAlign: 'center', marginTop: '1em', textDecoration: 'underline' }}>Disease Detection</h2>
+            <p className="servicePara">Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis temporibus praesentium consequuntur a iste delectus adipisci nihil molestias perferendis totam. Id possimus numquam enim ipsa voluptatem officia earum sit aliquam!</p>
+            <div className="serviceBtn--container">
+              <button onClick={() => setServiceSeleted('diseaseSelected')} className="serviceBtn">Disease Detection</button>
+            </div>
+          </div>
+          <div className="serviceCard" style={{height: '80vh', backgroundColor: '#4158D0', backgroundImage: 'linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%)' }}>
+            <img className="serviceCard--img" src='/images/background/1.jpg' alt="poster" />
+            <h2 style={{ textAlign: 'center', marginTop: '1em', textDecoration: 'underline' }}>Smart Irrigation</h2>
+            <p className="servicePara">Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis temporibus praesentium consequuntur a iste delectus adipisci nihil molestias perferendis totam. Id possimus numquam enim ipsa voluptatem officia earum sit aliquam!</p>
+            <div className="serviceBtn--container" style={{marginTop: '3em'}}>
+              <button onClick={() => setServiceSeleted('irrigationSelected')} className="serviceBtn">Smart Irrigation</button>
+            </div>
+          </div>
+        </div>
+      }
+      {
+        serviceSelected === 'diseaseSelected' &&
+        < React.Fragment >
+          <Container maxWidth={false} className={classes.mainContainer} disableGutters={true}>
+            <Grid
+              className={classes.gridContainer}
+              container
+              direction="row"
+              justifyContent="center"
+              alignItems="center"
+              spacing={2}
+            >
+              <Grid item xs={12}>
+                <Card className={`${classes.imageCard} ${!image ? classes.imageCardEmpty : ''}`}>
+                  {image && <CardActionArea>
+                    <CardMedia
+                      className={classes.media}
+                      image={preview}
+                      component="image"
+                      title="Contemplative Reptile"
+                    />
+                  </CardActionArea>
+                  }
+                  {!image && <CardContent className={classes.content}>
+                    <DropzoneArea
+                      dropzoneClass={classes.dropZone}
+                      acceptedFiles={['image/*']}
+                      dropzoneText={"Drag and drop an image of a plant leaf to process"}
+                      onChange={onSelectFile}
+                    />
+                  </CardContent>}
+                  {data && <CardContent className={classes.detail}>
+                    <TableContainer component={Paper} className={classes.tableContainer}>
+                      <Table className={classes.table} size="small" aria-label="simple table">
+                        <TableHead className={classes.tableHead}>
+                          <TableRow className={classes.tableRow}>
+                            <TableCell className={classes.tableCell1}>Label:</TableCell>
+                            <TableCell align="right" className={classes.tableCell1}>Confidence:</TableCell>
+                          </TableRow>
+                        </TableHead>
+                        <TableBody className={classes.tableBody}>
+                          <TableRow className={classes.tableRow}>
+                            <TableCell component="th" scope="row" className={classes.tableCell}>
+                              {data.class}
+                            </TableCell>
+                            <TableCell align="right" className={classes.tableCell}>{confidence}%</TableCell>
+                          </TableRow>
+                        </TableBody>
+                      </Table>
+                    </TableContainer>
+                  </CardContent>}
+                  {isLoading && <CardContent className={classes.detail}>
+                    <CircularProgress color="secondary" className={classes.loader} />
+                    <Typography className={classes.title} variant="h6" noWrap>
+                      Processing
+                    </Typography>
+                  </CardContent>}
+                </Card>
+              </Grid>
+              {data &&
+                <Grid item className={classes.buttonGrid} >
+
+                  <ColorButton variant="contained" className={classes.clearButton} color="primary" component="span" size="large" onClick={clearData} startIcon={<Clear fontSize="large" />}>
+                    Clear
+                  </ColorButton>
+                </Grid>}
+            </Grid >
+          </Container >
+        </React.Fragment >
+      }
+      {
+        serviceSelected === 'irrigationSelected' &&
+        <div className="irrigationPage--container">
+          <div className="irrigation--container">
+            <form className="box" id="landInfo" method="post" onSubmit={(e) => handleIrrigation(e)}>
+              <h1 style={{ color: 'black' }}>Land Informations</h1>
+              <input type="text" name="moist" placeholder="Moisture of land" />
+              <input type="text" name="temp" placeholder="Temperature" />
+              <input type="submit" name="" value="Submit" />
+            </form>
+            {
+              isLoading &&
+              <div className="irrigation--loading">
+                <Loading />
+              </div>
+            }
+            {
+              irrigationData != '' &&
+              <div className="">
+                <div className="irrigation--result--container">
+                  {
+                    irrigationData === 'Do not water land' &&
+                    <img className="irrigation--img" src="/images/background/doNotWater.svg" alt="do not water land" />
+                  }
+                  {
+                    irrigationData === 'You should water land' &&
+                    <img className="irrigation--img" src="/images/background/water.svg" alt="water land" />
+                  }
+                  <div className="irrigation--result">{irrigationData}</div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div >
   );
 };

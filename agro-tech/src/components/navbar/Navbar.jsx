@@ -2,8 +2,6 @@ import './navbar.css'
 import { useState, useEffect } from 'react'
 
 export default function Navbar() {
-    // const [theme, setTheme] = useState(false);
-    // const handleTheme = () => setTheme(prev => !prev);
     const [show, handleShow] = useState(false);
     const [username, setUsername] = useState('');
 
@@ -32,11 +30,10 @@ export default function Navbar() {
             window.removeEventListener('scroll', null);
         };
     }, [])
-    console.log(username)
     const login = <li><a className={`navbar__list ${show && 'nav-dark'}`} href='http://localhost:4000/login'>Login</a></li>
     const signup = <li><a className={`navbar__list ${show && 'nav-dark'}`} href='http://localhost:4000/signup'>SignUp</a></li>
-    const printUser = <li><a className={`navbar__list ${show && 'nav-dark'}`} href='#'>{username}</a></li>
-    const logOut = <li><a className={`navbar__list ${show && 'nav-dark'}`} href='#' onClick={() => handleLogout()}>Log out</a></li>
+    const printUser = <li className={`navbar__list ${show && 'nav-dark'}`}>{username}</li>
+    const logOut = <li className={`navbar__list ${show ? 'nav-dark' : ''}`} onClick={() => handleLogout()}> Log out</ li>
     return (
         <nav id='navbar' className={`navbar-container ${show && 'nav-dark'}`}>
             <div className='logo'>

@@ -2,13 +2,10 @@ require('dotenv').config();
 const express = require("express"); // using this
 const path = require("path");
 const bcrypt = require("bcryptjs"); // using this
-const auth = require("./middleware/auth");
-const cookieparser = require("cookie-parser");
 const app = express();
 const hbs = require("hbs");
 const { urlencoded } = require("body-parser");
 const bodyParser = require("body-parser");
-const { dirname } = require("path");
 const port = process.env.PORT || 4000;
 const templates_path = path.join(__dirname, '../templates/views');
 const partial_path = path.join(__dirname, '../templates/partials');
@@ -18,7 +15,6 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.set('view engine', 'hbs');
 app.set('views', templates_path);
 hbs.registerPartials(partial_path);
-require("./db/conn");
 
 //Shivansh code
 

@@ -1,62 +1,214 @@
-.service__home {
-    margin-top: 2rem;
+.services--container {
+    background-color: #9c9696;
 }
 
-@supports (background-color: #333) {
-    body {
-        background-color: #fff;
-    }
-}
-
-.service__title {
-    width: 100vw;
-    background-image: linear-gradient(to right, orange, red);
-    height: 10rem;
-    font-size: 5rem;
+.serviceCard--container {
+    margin-top: 6%;
     display: flex;
+    justify-content: space-around;
     align-items: center;
-    justify-content: center;
+    margin-bottom: 2em;
+    padding: 3em;
 }
 
-.service__infoOne {
-    display: flex;
-    padding: 2rem;
-    align-items: center;
-    background-color: grey;
-    margin: 10rem 5rem;
-    border-radius: 10px;
-}
-
-.service__img1 {
-    border-radius: 10px;
-    object-fit: contain;
-    width: 100%;
-}
-
-.service__img1:hover {
+.serviceCard:hover {
     transform: scale(1.05);
-    transition: ease 0.5s;
+    transition: 0.5s ease-in-out;
 }
 
-
-.service__infoText {
-    font-size: 2rem;
-    margin-left: 5rem;
-}
-
-.service__upload {
-    margin: 0 10%;
-    width: 80%;
-    height: 400px;
-    border-radius: 25px;
-    background-image: linear-gradient(to right, #00ff6c, #00aaff);
+.serviceCard {
     display: flex;
     flex-direction: column;
-    color: black;
-    margin-bottom: 3rem;
+    border: 1px solid black;
+    width: 383px;
+    padding: 1em;
+    border-radius: 8px;
+    background-color: #0093E9;
+    background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+    -webkit-box-shadow: 0px 0px 13px 3px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 13px 3px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 13px 3px rgba(0, 0, 0, 0.75);
 }
 
-.service__upload:hover {
-    transform: scale(1.05);
-    transition: ease 0.5s;
+.serviceCard--img {
+    width: 350px;
+}
+
+.servicePara {
+    text-align: center;
+    margin: 1em 0;
+}
+
+.serviceBtn--container {
+    display: flex;
+    justify-content: center;
+    margin: 1em 0;
+    padding: 1em 0;
+}
+
+.serviceBtn {
+    width: 50%;
+    border-radius: 5px;
+    height: 3em;
+    font-size: 1em;
+    padding: 2px;
+}
+
+.serviceBtn:hover {
+    background-color: #58e9a1;
+    transform: scale(1.01);
+    box-shadow: black 10px black 20px;
+    transition: ease-in 0.2s;
+}
+
+.irrigationPage--container {
+    display: flex;
+    flex-direction: column;
+}
+
+.irrigation--container {
+    margin-top: 8%;
+    padding: 3em 10em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.irrigation--img--container {
+    display: flex;
+    flex-direction: column;
+}
+
+.irrigation--img {
+    width: 400px;
+    height: 300px;
+}
+
+.box h1 {
+    color: white;
+    font-weight: 500;
+}
+
+.box {
+    width: 400px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    background-color: #FAACA8;
+    background-image: linear-gradient(19deg, #FAACA8 0%, #DDD6F3 100%);
+    text-align: center;
+    color: black;
+    border-radius: 2em;
+}
+
+.box input[type="text"],
+.box input[type="text"] {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #3498db;
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+}
+
+.box input[type="text"]:focus,
+.box input[type="text"]:focus {
+    width: 280px;
+    border-color: #2ecc71;
+}
+
+.box input[type="submit"] {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    color: white;
+    border: 2px solid #2ecc71;
+    padding: 14px 10px;
+    width: 150px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+.box input[type="submit"]:hover {
+    background-color: #2ecc71;
+}
+
+h1 a {
+    text-decoration: none;
+    color: beige;
+    margin: 4px 10px;
+    font-size: 1.5rem;
+}
+
+h1 a:hover {
+    color: rgb(101, 221, 131);
+    text-decoration: none;
+}
+
+.irrigation--loading {
+    display: flex;
+    justify-content: center;
+    margin-top: 5em;
+    align-items: center;
+    margin-right: 5em;
+}
+
+.irrigation--result--container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2em;
+    margin: 2em 0;
+}
+
+.irrigation--result {
+    text-align: center;
+    font-size: 3em;
+    width: 5em;
+}
+
+@media screen and (max-width: 750px){
+    .irrigation--container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .irrigation--img--container {
+        margin-bottom: 5em;
+    }
+    
+    .irrigation--container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .irrigation--result--container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .irrigation--img {
+        margin-bottom: 2em;
+    }
+
+    .serviceCard--container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .serviceCard {
+        margin: 3em 0;
+    }
 }
