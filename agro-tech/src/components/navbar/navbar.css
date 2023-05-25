@@ -25,7 +25,7 @@
 }
 
 .logo {
-    width: 80em;
+    width: 45%;
     display: flex;
     align-items: center;
 }
@@ -35,7 +35,7 @@
 }
 
 .menu {
-    width: 50em;
+    width: 55%;
 }
 
 

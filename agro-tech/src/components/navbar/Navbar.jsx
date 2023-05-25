@@ -16,6 +16,10 @@ export default function Navbar() {
         setUsername('');
     }
 
+    function truncate(str, n) {
+        return (str.length > n) ? str.slice(0, n - 1) + '...' : str;
+    };
+
     useEffect(() => {
         window.addEventListener('scroll', () => {
             if (window.scrollY > 100) handleShow(true);
@@ -23,7 +27,8 @@ export default function Navbar() {
         });
         async function getUsername() {
             const getUsername = await fetch('http://localhost:4000/username').then((res) => res.json());
-            if (getUsername !== "") setUsername(getUsername);
+            const shortUsername = truncate(getUsername, 10);
+            if (getUsername !== "") setUsername(shortUsername);
         }
         getUsername();
         return () => {
