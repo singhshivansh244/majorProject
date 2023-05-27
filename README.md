@@ -28,8 +28,11 @@ The smart irrigation service will enable users to optimize their water usage for
     2) install all required packages $npm i 
     3) run the front-end(agro-tech) $npm start
     4) run the backend(backend/src) $nodemon app.js
-    5) run the (backend/diseaseDetection/api) $python3 main.py
+    5) install python dependecies for irrigation tensorflow, flask, flask_cors, numpy
     6) run the (backend/irrigation) $python3 aap.py
+    7) install python dependencies for diseaseDetection (backend/diseaseDetection/api) $pip install -r requirements.txt
+    8) run the (backend/diseaseDetection/api) $python3 main.py
+
 
 
 ## Tech Used
