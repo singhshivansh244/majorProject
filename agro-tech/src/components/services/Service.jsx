@@ -335,8 +335,8 @@ export default function Service() {
           <div className="irrigation--container">
             <form className="box" id="landInfo" method="post" onSubmit={(e) => handleIrrigation(e)}>
               <h1 style={{ color: 'black' }}>Land Informations</h1>
-              <input type="text" name="moist" placeholder="Moisture of land" />
-              <input type="text" name="temp" placeholder="Temperature" />
+              <input type="text" name="moist" placeholder="Temperature" />
+              <input type="text" name="temp" placeholder="Moisture of land" />
               <input type="submit" name="" value="Submit" />
             </form>
             {
